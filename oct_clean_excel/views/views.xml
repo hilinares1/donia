@@ -1,60 +1,37 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="oct_clean_excel.list">
-      <field name="name">oct_clean_excel list</field>
-      <field name="model">oct_clean_excel.oct_clean_excel</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="oct_clean_excel.action_window">
-      <field name="name">oct_clean_excel window</field>
-      <field name="res_model">oct_clean_excel.oct_clean_excel</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
+    <record model="ir.ui.view" id="modules_tree">
+            <field name="name">oct.clean.excel</field>
+            <field name="model">oct.clean.excel</field>
+            <field name="type">tree</field>
+        </record>
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="oct_clean_excel.action_server">
-      <field name="name">oct_clean_excel server</field>
-      <field name="model_id" ref="model_oct_clean_excel_oct_clean_excel"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="oct_clean_excel" id="oct_clean_excel.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="oct_clean_excel.menu_1" parent="oct_clean_excel.menu_root"/>
-    <menuitem name="Menu 2" id="oct_clean_excel.menu_2" parent="oct_clean_excel.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="oct_clean_excel.menu_1_list" parent="oct_clean_excel.menu_1"
-              action="oct_clean_excel.action_window"/>
-    <menuitem name="Server to list" id="oct_clean_excel" parent="oct_clean_excel.menu_2"
-              action="oct_clean_excel.action_server"/>
--->
+    <record id="action_clean_excel" model="ir.actions.act_window">
+            <field name="name">Clean Import Excel Product</field>
+            <field name="res_model">oct.clean.excel</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excels_tree"/>
+        </record>
+
+<!--        <act_window id="oct_excel_clean_create"-->
+<!--                    name="Descargar Modulo"-->
+<!--                    res_model="wizard.create.module"-->
+<!--                    binding_model="modules.created.element"-->
+<!--                    binding_views="list"-->
+<!--                    view_mode="form" target="new"-->
+<!--        />-->
+
+
+        <menuitem
+                id="menu_clean_excel"
+                name="Clean Import Excel Product"
+                parent="base.menu_custom"
+                sequence="2"
+                action="oct_clean_excel.action_clean_excel"
+        />
+
+
   </data>
 </odoo>
