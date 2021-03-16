@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_oct_clean_excel_oct_clean_excel,oct_clean_excel.oct_clean_excel,model_oct_clean_excel_oct_clean_excel,base.group_user,1,1,1,1
+access_oct_clean_excel,oct_clean_excel,model_oct_clean_excel,sales_team.group_sale_manager,1,1,1,1

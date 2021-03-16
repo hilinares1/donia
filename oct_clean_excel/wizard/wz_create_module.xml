@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+<!--        <record id="oct_create_module" model="ir.ui.view">-->
+<!--            <field name="model">wizard.create.module</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Datos">-->
+<!--                    <group col="4" colspan="4">-->
+<!--                        <field name="name"/>-->
+<!--                        <field name="author"/>-->
+<!--                        <field name="description"/>-->
+<!--                        <field name="summary"/>-->
+<!--                    </group>-->
+<!--                    <group col="4" colspan="4">-->
+<!--                        <field name="category"/>-->
+<!--                        <field name="website"/>-->
+<!--                        <field name="version"/>-->
+<!--                    </group>-->
+<!--                    <footer>-->
+<!--                        <button name="oct_create_new_module" string="DESCARGAR MODULO" type="object"-->
+<!--                                class="oe_highlight"/>-->
+<!--                        <button string="Cancelar" class="btn-default" special="cancel"/>-->
+<!--                    </footer>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>
