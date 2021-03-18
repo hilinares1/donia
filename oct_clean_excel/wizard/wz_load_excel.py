@@ -40,7 +40,7 @@ class LoadExcelFile(models.TransientModel):
                 row_with_value = row
             else:
 
-                if sheet.cell(row, 4).value.strip() == None or sheet.cell(row, 4).value.strip() == sheet.cell(
+                if sheet.cell(row, 4).value == None or sheet.cell(row, 4).value.strip() == sheet.cell(
                         row_with_value, 4).value.strip():
 
                     sheet.cell(row_with_value, 5).value = sheet.cell(row_with_value,
