@@ -1,29 +1,6 @@
 <odoo>
     <data>
 
-        <record model="ir.ui.view" id="excels_tree">
-            <field name="name">oct.clean.excel</field>
-            <field name="model">oct.clean.excel</field>
-            <field name="type">tree</field>
-        </record>
-
-
-        <record id="action_clean_excel" model="ir.actions.act_window">
-            <field name="name">Clean Import Excel Product</field>
-            <field name="res_model">oct.clean.excel</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="excels_tree"/>
-        </record>
-
-        <act_window id="action_load_excel"
-                    name="Descargar Modulo"
-                    res_model="wizard.wizard.load_file"
-                    binding_model="modules.created.element"
-                    binding_views="list"
-                    view_mode="form" target="new"
-        />
-
-
         <menuitem
                 id="menu_clean_excel"
                 name="Clean Import Excel Product"
