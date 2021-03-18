@@ -13,6 +13,7 @@ _logger = logging.getLogger()
 
 class LoadExcelFile(models.TransientModel):
     _name = 'wizard.load_file'
+    _description = 'Model to import and clean data'
 
     serial_file = fields.Binary(string="Cargar Archivo")
 
