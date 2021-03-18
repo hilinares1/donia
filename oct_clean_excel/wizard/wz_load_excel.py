@@ -8,7 +8,6 @@ import tempfile
 import string
 import random
 
-
 _logger = logging.getLogger()
 
 
@@ -22,23 +21,13 @@ class LoadExcelFile(models.TransientModel):
         return ''.join(random.choice(letters) for i in range(10))
 
     def load_excel_file(self):
-        # raise exceptions.Warning("Probando el wizard")
+        final_name = "modified_file_" + self.generate_random_name()
 
-        path = ''
-        name_of_file = self.generate_random_name()
-
-        #temp = tempfile.NamedTemporaryFile(prefix="modified_file_" + name_of_file + '')
-        with tempfile.NamedTemporaryFile(prefix="modified_file_" + name_of_file, suffix='.xlsx', delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(prefix=final_name, suffix='.xlsx', delete=False) as tmp:
             tmp.write(base64.decodebytes(self.serial_file))
-
-        # file_decoded = base64.decodebytes(self.serial_file)
-        # file_manifest = open("/tmp/prueba.xlsx", "wb")
-        # file_manifest.write(file_decoded)
-        # file_manifest.close()
 
         xfile = openpyxl.load_workbook(tmp.name)
         sheet = xfile.worksheets[0]
-        # sheet.cell(1, 6).value = 'hello world'
 
         row_count = sheet.max_row
         column_count = sheet.max_column
@@ -46,26 +35,20 @@ class LoadExcelFile(models.TransientModel):
         row_with_value = 0
 
         for row in range(1, row_count + 1):
-            if not sheet.cell(row, 1).value == None:
+            if not sheet.cell(row, 1).value.strip() == None:
                 row_with_value = row
             else:
 
-                if sheet.cell(row, 4).value == None or sheet.cell(row, 4).value == sheet.cell(row_with_value, 4).value:
+                if sheet.cell(row, 4).value.strip() == None or sheet.cell(row, 4).value.strip() == sheet.cell(
+                        row_with_value, 4).value.strip():
 
-                    sheet.cell(row_with_value, 5).value = sheet.cell(row_with_value, 5).value + ',' + sheet.cell(row,
-                                                                                                                 5).value
+                    sheet.cell(row_with_value, 5).value = sheet.cell(row_with_value,
+                                                                     5).value.strip() + ',' + sheet.cell(row,
+                                                                                                         5).value.strip()
                     sheet.cell(row, 5).value = ""
                     sheet.cell(row, 1).value = 'delete'
                 else:
                     row_with_value = row
-
-        # deleting rows
-        #         for row1 in range(1, row_count):
-        #             if sheet.cell(row1, 1).value == 'delete':
-        #                 sheet.delete_rows(row1, 1)
-
-        #             for col in range(1, column_count + 1):
-        #                 if sheet.cell(row, 1)
 
         xfile.save(tmp.name)
         self.clean_file_deleted_row(tmp)
@@ -74,7 +57,7 @@ class LoadExcelFile(models.TransientModel):
             file = base64.b64encode(r.read())
 
         att_vals = {
-            'name': "modified_file_" + name_of_file + '.xlsx',
+            'name': final_name + '.xlsx',
             'type': 'binary',
             'datas': file,
         }
@@ -91,7 +74,6 @@ class LoadExcelFile(models.TransientModel):
     def clean_file_deleted_row(self, tmp):
         xfile = openpyxl.load_workbook(tmp.name)
         sheet = xfile.worksheets[0]
-        # sheet.cell(1, 6).value = 'hello world'
 
         row_count = sheet.max_row
         column_count = sheet.max_column
@@ -102,4 +84,3 @@ class LoadExcelFile(models.TransientModel):
                     sheet.delete_rows(row1, 1)
 
         xfile.save(tmp.name)
-
