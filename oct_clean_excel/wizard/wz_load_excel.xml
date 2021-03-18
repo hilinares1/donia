@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="oct_clean_excel_load" model="ir.ui.view">
+            <field name="model">wizard.load_file</field>
+            <field name="arch" type="xml">
+                <form string="Datos">
+                    <group col="4" colspan="4">
+                        <field name="serial_file"/>
+                    </group>
+                    <footer>
+                        <button name="load_excel_file" string="Import File" type="object"
+                                class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="oct_clean_excel.action_load_excel" model="ir.actions.act_window">
+            <field name="name">Import Excel Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.load_file</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="oct_clean_excel_load"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>
