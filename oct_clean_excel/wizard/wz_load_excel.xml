@@ -17,7 +17,7 @@
         </record>
 
 
-        <record id="action_load_excel" model="ir.actions.act_window">
+        <record id="oct_clean_excel.action_load_excel" model="ir.actions.act_window">
             <field name="name">Import Excel Product</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">wizard.load_file</field>
