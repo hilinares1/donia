@@ -36,7 +36,7 @@ class LoadExcelFile(models.TransientModel):
         row_with_value = 0
 
         for row in range(1, row_count + 1):
-            if not sheet.cell(row, 1).value.strip() == None:
+            if not sheet.cell(row, 1).value == None:
                 row_with_value = row
             else:
 
