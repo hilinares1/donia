@@ -106,3 +106,24 @@ msgstr ""
 #: model:ir.model,name:oct_clean_excel.model_oct_clean_excel
 msgid "oct.clean.excel"
 msgstr ""
+
+#. module: oct_clean_excel
+#: code:addons/oct_clean_excel/wizard/.ipynb_checkpoints/wz_load_excel-checkpoint.py:0
+#: code:addons/oct_clean_excel/wizard/wz_load_excel.py:0
+#, python-format
+msgid "The fields [attribute column] and [value column] are required"
+msgstr "Los campos [Columna de atributo] y [Columna de Valor] son obligatorios"
+
+#. module: oct_clean_excel
+#: code:addons/oct_clean_excel/wizard/.ipynb_checkpoints/wz_load_excel-checkpoint.py:0
+#: code:addons/oct_clean_excel/wizard/wz_load_excel.py:0
+#, python-format
+msgid "You must select a file to modify"
+msgstr "Debe seleccionar un archivo para modificar"
+
+#. module: oct_clean_excel
+#: code:addons/oct_clean_excel/wizard/.ipynb_checkpoints/wz_load_excel-checkpoint.py:0
+#: code:addons/oct_clean_excel/wizard/wz_load_excel.py:0
+#, python-format
+msgid "The selected file seems to be not valid"
+msgstr "El archivo seleccionado parece no ser válido"

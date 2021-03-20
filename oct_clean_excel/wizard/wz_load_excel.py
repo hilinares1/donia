@@ -1,6 +1,6 @@
 import string
 
-from odoo import api, fields, models, exceptions
+from odoo import api, fields, models, exceptions, _
 import logging
 import base64
 import openpyxl
@@ -15,9 +15,9 @@ class LoadExcelFile(models.TransientModel):
     _name = 'wizard.load_file'
     _description = 'Model to import and clean data'
 
-    serial_file = fields.Binary(string="Cargar Archivo")
-    col_attribute = fields.Integer(string='Columna de atributo')
-    col_attribute_value = fields.Integer(string='Columna de valor')
+    serial_file = fields.Binary(string="Load File")
+    col_attribute = fields.Integer(string='Attribute column')
+    col_attribute_value = fields.Integer(string='Column of value')
 
     def generate_random_name(self):
         letters = string.ascii_lowercase
@@ -26,10 +26,10 @@ class LoadExcelFile(models.TransientModel):
     def load_excel_file(self):
 
         if not self.col_attribute or not self.col_attribute_value:
-            raise exceptions.Warning("Los campos [Columna de atributo] y [Columna de Valor] son obligatorios")
+            raise exceptions.Warning(_("The fields [attribute column] and [value column] are required"))
         else:
             if not self.serial_file:
-                raise exceptions.Warning("Debe seleccionar un archivo para modificar")
+                raise exceptions.Warning(_("You must select a file to modify "))
             else:
 
                 try:
@@ -55,7 +55,7 @@ class LoadExcelFile(models.TransientModel):
 
                             if sheet.cell(row, colattr).value == None or sheet.cell(row,
                                                                                     colattr).value.strip() == sheet.cell(
-                                    row_with_value, colattr).value.strip():
+                                row_with_value, colattr).value.strip():
 
                                 sheet.cell(row_with_value, colattrv).value = sheet.cell(row_with_value,
                                                                                         colattrv).value.strip() + ',' + sheet.cell(
@@ -87,7 +87,7 @@ class LoadExcelFile(models.TransientModel):
                         'target': 'self',
                     }
                 except Exception:
-                    raise exceptions.Warning("El archivo seleccionado parece no ser válido")
+                    raise exceptions.Warning(_("The selected file seems to be not valid"))
 
     def clean_file_deleted_row(self, tmp):
         xfile = openpyxl.load_workbook(tmp.name)
