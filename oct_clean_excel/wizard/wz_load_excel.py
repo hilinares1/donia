@@ -16,61 +16,70 @@ class LoadExcelFile(models.TransientModel):
     _description = 'Model to import and clean data'
 
     serial_file = fields.Binary(string="Cargar Archivo")
+    col_attribute = fields.Integer(string='Columna de atributo')
+    col_attribute_value = fields.Integer(string='Columna de valor')
 
     def generate_random_name(self):
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for i in range(10))
 
     def load_excel_file(self):
-        final_name = "modified_file_" + self.generate_random_name()
 
-        with tempfile.NamedTemporaryFile(prefix=final_name, suffix='.xlsx', delete=False) as tmp:
-            tmp.write(base64.decodebytes(self.serial_file))
+        if self.col_attribute == None or self.col_attribute_value == None:
+            raise exceptions.Warning("Los campos [Columna de atributo] y [Columna de Valor] son obligatorios")
+        else:
 
-        xfile = openpyxl.load_workbook(tmp.name)
-        sheet = xfile.worksheets[0]
+            colattr = self.col_attribute          # columna 4 atributos
+            colattrv = self.col_attribute_value   # columna 5 valores de los atributos
 
-        row_count = sheet.max_row
-        column_count = sheet.max_column
+            final_name = "modified_file_" + self.generate_random_name()
 
-        row_with_value = 0
+            with tempfile.NamedTemporaryFile(prefix=final_name, suffix='.xlsx', delete=False) as tmp:
+                tmp.write(base64.decodebytes(self.serial_file))
 
-        for row in range(1, row_count + 1):
-            if not sheet.cell(row, 1).value == None:
-                row_with_value = row
-            else:
+            xfile = openpyxl.load_workbook(tmp.name)
+            sheet = xfile.worksheets[0]
 
-                if sheet.cell(row, 4).value == None or sheet.cell(row, 4).value.strip() == sheet.cell(
-                        row_with_value, 4).value.strip():
+            row_count = sheet.max_row
 
-                    sheet.cell(row_with_value, 5).value = sheet.cell(row_with_value,
-                                                                     5).value.strip() + ',' + sheet.cell(row,
-                                                                                                         5).value.strip()
-                    sheet.cell(row, 5).value = ""
-                    sheet.cell(row, 1).value = 'delete'
-                else:
+            row_with_value = 0
+
+            for row in range(1, row_count + 1):
+                if not sheet.cell(row, 1).value == None:
                     row_with_value = row
+                else:
 
-        xfile.save(tmp.name)
-        self.clean_file_deleted_row(tmp)
+                    if sheet.cell(row, colattr).value == None or sheet.cell(row, colattr).value.strip() == sheet.cell(
+                            row_with_value, colattr).value.strip():
 
-        with open(tmp.name, 'rb') as r:
-            file = base64.b64encode(r.read())
+                        sheet.cell(row_with_value, colattrv).value = sheet.cell(row_with_value,
+                                                                         colattrv).value.strip() + ',' + sheet.cell(row,
+                                                                                                             colattrv).value.strip()
+                        sheet.cell(row, colattrv).value = ""
+                        sheet.cell(row, 1).value = 'delete'
+                    else:
+                        row_with_value = row
 
-        att_vals = {
-            'name': final_name + '.xlsx',
-            'type': 'binary',
-            'datas': file,
-        }
+            xfile.save(tmp.name)
+            self.clean_file_deleted_row(tmp)
 
-        attachment_id = self.env['ir.attachment'].create(att_vals)
-        self.env.cr.commit()
+            with open(tmp.name, 'rb') as r:
+                file = base64.b64encode(r.read())
 
-        return {
-            'type': 'ir.actions.act_url',
-            'url': '/web/content/{}?download=true'.format(attachment_id.id, ),
-            'target': 'self',
-        }
+            att_vals = {
+                'name': final_name + '.xlsx',
+                'type': 'binary',
+                'datas': file,
+            }
+
+            attachment_id = self.env['ir.attachment'].create(att_vals)
+            self.env.cr.commit()
+
+            return {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/{}?download=true'.format(attachment_id.id, ),
+                'target': 'self',
+            }
 
     def clean_file_deleted_row(self, tmp):
         xfile = openpyxl.load_workbook(tmp.name)
