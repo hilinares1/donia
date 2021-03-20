@@ -29,7 +29,7 @@ class LoadExcelFile(models.TransientModel):
             raise exceptions.Warning(_("The fields [attribute column] and [value column] are required"))
         else:
             if not self.serial_file:
-                raise exceptions.Warning(_("You must select a file to modify "))
+                raise exceptions.Warning(_("You must select a file to modify"))
             else:
 
                 try:
