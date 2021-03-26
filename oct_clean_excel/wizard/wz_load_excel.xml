@@ -10,7 +10,6 @@
                         </group>
                         <group>
                             <field name="col_attribute"/>
-                            <field name="col_attribute_value"/>
                         </group>
                     </group>
                     <footer>
