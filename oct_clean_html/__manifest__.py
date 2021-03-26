@@ -23,7 +23,8 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'wizard/wz_load_excel.xml',
         'views/views.xml',
         'views/templates.xml',
     ],
