@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="oct_clean_html" model="ir.ui.view">
-            <field name="model">wizard.load_file</field>
+            <field name="model">wizard.load_html_file</field>
             <field name="arch" type="xml">
                 <form string="Datos">
                     <group>
@@ -9,7 +9,7 @@
                             <field name="serial_file"/>
                         </group>
                         <group>
-                            <field name="col_attribute"/>
+                            <field name="col_html"/>
                         </group>
                     </group>
                     <footer>
@@ -25,7 +25,7 @@
         <record id="oct_clean_html.action_load_html" model="ir.actions.act_window">
             <field name="name">Import Html Text</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">wizard.load_file</field>
+            <field name="res_model">wizard.load_html_file</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="oct_clean_html"/>
             <field name="target">new</field>
