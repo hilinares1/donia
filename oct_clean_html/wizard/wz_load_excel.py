@@ -25,7 +25,7 @@ class LoadExcelFile(models.TransientModel):
 
     def load_html_file(self):
 
-        if not self.col_attribute or not self.col_attribute_value:
+        if not self.col_html:
             raise exceptions.Warning(_("The fields [html column] is required"))
         else:
             if not self.serial_file:
