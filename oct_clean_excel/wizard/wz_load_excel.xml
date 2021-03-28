@@ -8,6 +8,10 @@
                         <group>
                             <field name="serial_file"/>
                         </group>
+                        <group>
+                            <field name="col_attribute"/>
+                            <field name="col_attribute_value"/>
+                        </group>
                     </group>
                     <footer>
                         <button name="load_excel_file" string="Import File" type="object"
