@@ -83,3 +83,13 @@ msgstr "Debe seleccionar un archivo para modificar"
 #, python-format
 msgid "The selected file seems to be not valid"
 msgstr "El archivo seleccionado parece no ser válido"
+
+#. module: oct_clean_html
+#: model:ir.model.fields,field_description:oct_clean_html.field_wizard_load_html_file__serial_file
+msgid "Load File"
+msgstr "Cargar Archivo"
+
+#. module: oct_clean_html
+#: model:ir.model.fields,field_description:oct_clean_html.field_wizard_load_html_file__col_html
+msgid "Html column"
+msgstr "Columna HTML"
