@@ -28,7 +28,7 @@ msgstr "Cargar Archivo"
 #. module: oct_clean_excel
 #: model:ir.ui.menu,name:oct_clean_excel.menu_clean_excel
 msgid "Import and Clean File"
-msgstr "Importar y limpiar archivo"
+msgstr "Importar y limpiar productos"
 
 #. module: oct_clean_excel
 #: model:ir.model.fields,field_description:oct_clean_excel.field_wizard_load_file__col_attribute
