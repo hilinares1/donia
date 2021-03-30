@@ -41,6 +41,16 @@ msgid "Column of value"
 msgstr "Columna de valor"
 
 #. module: oct_clean_excel
+#: model:ir.model.fields,field_description:oct_clean_excel.field_wizard_load_file__col_id_attribute
+msgid "Column of Attributte ID"
+msgstr "Columna ID Atributo"
+
+#. module: oct_clean_excel
+#: model:ir.model.fields,field_description:oct_clean_excel.field_wizard_load_file__col_id_attribute
+msgid "Column of Attribute Value"
+msgstr "Columna ID Atributo Valor"
+
+#. module: oct_clean_excel
 #: model:ir.model.fields,field_description:oct_clean_excel.field_oct_clean_excel__create_uid
 #: model:ir.model.fields,field_description:oct_clean_excel.field_wizard_load_file__create_uid
 msgid "Creado por"

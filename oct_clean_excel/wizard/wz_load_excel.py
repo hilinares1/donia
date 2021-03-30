@@ -18,6 +18,8 @@ class LoadExcelFile(models.TransientModel):
     serial_file = fields.Binary(string="Load File")
     col_attribute = fields.Integer(string='Attribute column')
     col_attribute_value = fields.Integer(string='Column of value')
+    col_id_attribute = fields.Integer(string='Column of Attributte ID')
+    col_id_attribute_value = fields.Integer(string='Column of Attribute Value')
 
     def generate_random_name(self):
         letters = string.ascii_lowercase
