@@ -26,7 +26,6 @@ class LoadExcelFile(models.TransientModel):
         return ''.join(random.choice(letters) for i in range(10))
 
     def load_excel_file(self):
-
         if not self.col_attribute or not self.col_attribute_value:
             raise exceptions.Warning(_("The fields [attribute column] and [value column] are required"))
         else:
