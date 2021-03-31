@@ -121,6 +121,7 @@ class LoadExcelFile(models.TransientModel):
 
         xfile.save(tmp.name)
 
+
     def put_id_into_excel(self, tmp):
 
         xfile = openpyxl.load_workbook(tmp.name)
