@@ -9,10 +9,10 @@
                             <field name="serial_file"/>
                         </group>
                         <group>
-                            <field name="col_attribute"/>
-                            <field name="col_attribute_value"/>
                             <field name="col_id_attribute"/>
+                            <field name="col_attribute"/>
                             <field name="col_id_attribute_value"/>
+                            <field name="col_attribute_value"/>
                         </group>
                     </group>
                     <footer>

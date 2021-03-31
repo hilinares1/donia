@@ -17,11 +17,10 @@ class LoadExcelFile(models.TransientModel):
 
     serial_file = fields.Binary(string="Load File")
 
-    col_attribute = fields.Integer(string='Attribute column')
-    col_attribute_value = fields.Integer(string='Column of value')
-
     col_id_attribute = fields.Integer(string='Column of Attributte ID')
+    col_attribute = fields.Integer(string='Attribute column')
     col_id_attribute_value = fields.Integer(string='Column of Attribute Value')
+    col_attribute_value = fields.Integer(string='Column of value')
 
     def generate_random_name(self):
         letters = string.ascii_lowercase
@@ -77,18 +76,6 @@ class LoadExcelFile(models.TransientModel):
 
                 self.put_id_into_excel(tmp)
 
-                #                     if not sheet.cell(row1, colattrv).value == '' and not sheet.cell(row1, colattrv).value == None:
-
-                #                         value_obj = self.env['product.attribute.value'].search([('attribute_id', '=', attr_obj.id)])
-
-                #                         for value in sheet.cell(row1, colattrv).value.split(','):
-                #                             for val in value_obj:
-                #                                 if val.name == value:
-                #                                     if sheet.cell(row1, self.col_id_attribute_value).value == '' or sheet.cell(row1, self.col_id_attribute_value).value == None:
-                #                                         sheet.cell(row1, self.col_id_attribute_value).value = val.id
-                #                                     else:
-                #                                         sheet.cell(row1, self.col_id_attribute_value).value = str(sheet.cell(row1, self.col_id_attribute_value).value) + ',' + str(val.id)
-
                 with open(tmp.name, 'rb') as r:
                     file = base64.b64encode(r.read())
 
@@ -121,7 +108,6 @@ class LoadExcelFile(models.TransientModel):
 
         xfile.save(tmp.name)
 
-
     def put_id_into_excel(self, tmp):
 
         xfile = openpyxl.load_workbook(tmp.name)
@@ -130,12 +116,10 @@ class LoadExcelFile(models.TransientModel):
         row_count = sheet.max_row
         column_count = sheet.max_column
 
-        colattr = self.col_attribute  # columna 4 atributos
-        colattrv = self.col_attribute_value  # columna 5 valores de los atributos
-
         for row in range(2, row_count + 1):
 
-            attr_obj = self.env['product.attribute'].search([('name', '=', sheet.cell(row, colattr).value)])
+            attr_obj = self.env['product.attribute'].search(
+                [('name', '=', str(sheet.cell(row, self.col_attribute).value))])
 
             if attr_obj:
                 sheet.cell(row, self.col_id_attribute).value = str(attr_obj.id)
@@ -144,16 +128,27 @@ class LoadExcelFile(models.TransientModel):
                                                                                             self.col_attribute_value).value == None and not sheet.cell(
                 row, self.col_attribute_value).value == 'None':
                 values = sheet.cell(row, self.col_attribute_value).value.split(',')
-            for val in values:
-                value_obj = self.env['product.attribute.value'].search([('attribute_id', '=', attr_obj.id)])
-                for obj in value_obj:
-                    if obj.name == val:
-                        if sheet.cell(row, self.col_id_attribute).value == None:
-                            sheet.cell(row, self.col_id_attribute).value = obj.id
-                        else:
-                            sheet.cell(row, self.col_id_attribute).value = ',' + str(attr_obj.id)
+                for value in values:
+                    values_obj = self.env['product.attribute.value'].search([('attribute_id', '=', attr_obj.id)])
+                    if values_obj:
+                        for obj in values_obj:
+                            if obj.name == value:
+                                if sheet.cell(row, self.col_id_attribute_value).value == '' or sheet.cell(row,
+                                                                                                          self.col_id_attribute_value).value == None or sheet.cell(row, self.col_id_attribute_value).value == 'None':
+                                    sheet.cell(row, self.col_id_attribute_value).value = str(obj.id)
+                                else:
+                                    sheet.cell(row, self.col_id_attribute_value).value = sheet.cell(row, self.col_id_attribute_value).value + ',' + str(obj.id)
 
-                # _logger.info("====== valor del atributo=== : %r " % value_obj.name)
+        #             for val in values:
+        #                 value_obj = self.env['product.attribute.value'].search([('attribute_id', '=', attr_obj.id)])
+        #                 for obj in value_obj:
+        #                     if obj.name == val:
+        #                         if sheet.cell(row, self.6).value == None:
+        #                             sheet.cell(row, self.6).value = obj.id
+        #                         else:
+        #                             sheet.cell(row, self.6).value = ',' + str(attr_obj.id)
+
+        # _logger.info("====== valor del atributo=== : %r " % value_obj.name)
 
         # _logger.info("========= VALUES ========= %r " % values)
 
