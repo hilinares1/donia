@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* oct_clean_html
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-28 18:49+0000\n"
+"PO-Revision-Date: 2021-03-28 18:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: oct_clean_html
+#: model_terms:ir.ui.view,arch_db:oct_clean_html.oct_clean_html
+msgid "Cancelar"
+msgstr "Cancelar"
+
+#. module: oct_clean_html
+#: model_terms:ir.ui.view,arch_db:oct_clean_html.oct_clean_html
+msgid "Datos"
+msgstr ""
+
+#. module: oct_clean_html
+#: model_terms:ir.ui.view,arch_db:oct_clean_html.oct_clean_html
+msgid "Import File"
+msgstr "Importar Archivo"
+
+#. module: oct_clean_html
+#: model:ir.actions.act_window,name:oct_clean_html.action_load_html
+msgid "Import Html Text"
+msgstr "Importar texto HTML"
+
+#. module: oct_clean_html
+#: model:ir.ui.menu,name:oct_clean_html.menu_clean_html
+msgid "Import and Clean Html"
+msgstr "Importar y limpiar HTML"
+
+#. module: oct_clean_html
+#: model:ir.model,name:oct_clean_html.model_wizard_load_html_file
+msgid "Model to import and clean data"
+msgstr "Model para importa y limpiar datos"
+
+#. module: oct_clean_html
+#: code:addons/oct_clean_html/wizard/wz_load_excel.py:0
+#, python-format
+msgid "The fields [html column] is required"
+msgstr "El campo Columna HTML es obligatorio"
+
+#. module: oct_clean_html
+#: code:addons/oct_clean_html/wizard/wz_load_excel.py:0
+#, python-format
+msgid "The selected file seems to be not valid"
+msgstr "El archivo seleccionado parece no ser válido"
+
+#. module: oct_clean_html
+#: code:addons/oct_clean_html/wizard/wz_load_excel.py:0
+#, python-format
+msgid "You must select a file to modify"
+msgstr "Debes seleccionar un arhivo para modificar"
+
+#. module: oct_clean_html
+#: code:addons/oct_clean_html/wizard/.ipynb_checkpoints/wz_load_excel-checkpoint.py:0
+#: code:addons/oct_clean_html/wizard/wz_load_excel.py:0
+#, python-format
+msgid "The fields [html column] is required"
+msgstr "El campo [Html] es obligatorios"
+
+#. module: oct_clean_html
+#: code:addons/oct_clean_html/wizard/.ipynb_checkpoints/wz_load_excel-checkpoint.py:0
+#: code:addons/oct_clean_html/wizard/wz_load_excel.py:0
+#, python-format
+msgid "You must select a file to modify"
+msgstr "Debe seleccionar un archivo para modificar"
+
+#. module: oct_clean_html
+#: code:addons/oct_clean_html/wizard/.ipynb_checkpoints/wz_load_excel-checkpoint.py:0
+#: code:addons/oct_clean_html/wizard/wz_load_excel.py:0
+#, python-format
+msgid "The selected file seems to be not valid"
+msgstr "El archivo seleccionado parece no ser válido"
+
+#. module: oct_clean_html
+#: model:ir.model.fields,field_description:oct_clean_html.field_wizard_load_html_file__serial_file
+msgid "Load File"
+msgstr "Cargar Archivo"
+
+#. module: oct_clean_html
+#: model:ir.model.fields,field_description:oct_clean_html.field_wizard_load_html_file__col_html
+msgid "Html column"
+msgstr "Columna HTML"

@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="oct_clean_html" model="ir.ui.view">
+            <field name="model">wizard.load_html_file</field>
+            <field name="arch" type="xml">
+                <form string="Datos">
+                    <group>
+                        <group>
+                            <field name="serial_file"/>
+                        </group>
+                        <group>
+                            <field name="col_html"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="load_html_file" string="Import File" type="object"
+                                class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="oct_clean_html.action_load_html" model="ir.actions.act_window">
+            <field name="name">Import Html Text</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.load_html_file</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="oct_clean_html"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

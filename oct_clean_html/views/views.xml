@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+
+        <menuitem
+                id="menu_clean_html"
+                name="Import and Clean Html"
+                parent="stock.menu_stock_config_settings"
+                sequence="2"
+                action="oct_clean_html.action_load_html"
+        />
+
+    </data>
+</odoo>

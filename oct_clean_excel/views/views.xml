@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+
+        <menuitem
+                id="menu_clean_excel"
+                name="Import and Clean File"
+                parent="stock.menu_stock_config_settings"
+                sequence="2"
+                action="oct_clean_excel.action_load_excel"
+        />
+
+
+    </data>
+</odoo>
