@@ -49,10 +49,6 @@ class LoadExcelFile(models.TransientModel):
 
                 row_with_value = 0
 
-                # atributos, valores = self.get_map_attribute_value()
-
-                attr_object = self.env['product.attribute'].search([])
-
                 for row in range(1, row_count + 1):
                     if not sheet.cell(row, 1).value == None:
                         row_with_value = row
@@ -99,7 +95,6 @@ class LoadExcelFile(models.TransientModel):
         sheet = xfile.worksheets[0]
 
         row_count = sheet.max_row
-        column_count = sheet.max_column
 
         for row in range(1, row_count + 1):
             for row1 in range(row, row_count + 1):
@@ -138,18 +133,5 @@ class LoadExcelFile(models.TransientModel):
                                     sheet.cell(row, self.col_id_attribute_value).value = str(obj.id)
                                 else:
                                     sheet.cell(row, self.col_id_attribute_value).value = sheet.cell(row, self.col_id_attribute_value).value + ',' + str(obj.id)
-
-        #             for val in values:
-        #                 value_obj = self.env['product.attribute.value'].search([('attribute_id', '=', attr_obj.id)])
-        #                 for obj in value_obj:
-        #                     if obj.name == val:
-        #                         if sheet.cell(row, self.6).value == None:
-        #                             sheet.cell(row, self.6).value = obj.id
-        #                         else:
-        #                             sheet.cell(row, self.6).value = ',' + str(attr_obj.id)
-
-        # _logger.info("====== valor del atributo=== : %r " % value_obj.name)
-
-        # _logger.info("========= VALUES ========= %r " % values)
 
         xfile.save(tmp.name)
