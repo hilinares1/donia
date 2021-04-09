@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_oct_extend_tarifas_oct_extend_tarifas,oct_extend_tarifas.oct_extend_tarifas,model_oct_extend_tarifas_oct_extend_tarifas,,1,0,0,0
