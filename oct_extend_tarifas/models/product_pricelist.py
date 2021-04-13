@@ -3,7 +3,8 @@
 
 from odoo import api, fields, models, tools, _
 
-class PricelistItem(models.Model):
-    _name = "product.pricelist.item"
 
-    compute_price = fields.Selection(selection_add=[('fisica', "Tienda Fisica"),('web', "Tienda Web")])
+class PricelistItem(models.Model):
+    _inherit = "product.pricelist.item"
+
+    web_shop = fields.Boolean(string='Valor Tienda Web')
