@@ -1,15 +1,17 @@
 <odoo>
-  <data>
+    <data>
 
-    <record id="product_pricelist_item_form_view" model="ir.ui.view">
+        <record id="product_pricelist_item_form_view2" model="ir.ui.view">
             <field name="name">product.pricelist.item.form</field>
             <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
             <field name="arch" type="xml">
-              <xpath expr="//field[@name='price_max_margin']" position="after">
-                <field name="web_shop"/>
-              </xpath>
+                <xpath expr="//group[@name='pricelist_rule_advanced']" position="after">
+                    <label for="web_price_round" class="oe_inline" attrs="{'invisible':[('compute_price', '!=', 'formula')]}"/>
+                    <field name="web_price_round" attrs="{'invisible':[('compute_price', '!=', 'formula')]}"/>
+                </xpath>
             </field>
-    </record>
+        </record>
 
-  </data>
+    </data>
 </odoo>
