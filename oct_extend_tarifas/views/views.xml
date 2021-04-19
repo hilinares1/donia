@@ -7,8 +7,8 @@
             <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='pricelist_rule_advanced']" position="after">
-                    <label for="web_price_round" class="oe_inline" attrs="{'invisible':[('compute_price', '!=', 'formula')]}"/>
-                    <field name="web_price_round" attrs="{'invisible':[('compute_price', '!=', 'formula')]}"/>
+                    <label for="min_price" class="oe_inline" attrs="{'invisible':[('compute_price', '!=', 'formula')]}"/>
+                    <field name="min_price"/>
                 </xpath>
             </field>
         </record>

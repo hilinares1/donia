@@ -2,57 +2,41 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, tools, _
+from odoo.tools import float_compare
 import logging
+
 _logger = logging.getLogger(__name__)
+
+
+class PriceList(models.Model):
+    _inherit = "product.pricelist"
+
+    def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
+        result = super(PriceList, self)._compute_price_rule(products_qty_partner, date=date, uom_id=uom_id)
+
+        for item in result:
+
+            price = result[item][0]
+            list = result[item][1]
+
+            list_price_item = self.env['product.pricelist.item'].browse(list)
+            if list_price_item:
+                list_root = list_price_item.pricelist_id
+                if list_root and list_root.website_id:
+                    min_price = list_price_item.min_price
+
+                    final_price = 0
+                    if float_compare(min_price, price, precision_digits=2) == 1:
+                        final_price = min_price
+                    elif float_compare(min_price, price, precision_digits=2) == -1:
+                        final_price = price
+
+                    result[item] = (final_price, list)
+
+        return result
 
 
 class PricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
-    web_price_round = fields.Boolean(string='Valor Tienda Web', default=False)
-
-    def _compute_price(self, price, price_uom, product, quantity=1.0, partner=False):
-        """Compute the unit price of a product in the context of a pricelist application.
-           The unused parameters are there to make the full context available for overrides.
-        """
-        self.ensure_one()
-        convert_to_price_uom = (lambda price: product.uom_id._compute_price(price, price_uom))
-        if self.compute_price == 'fixed':
-            price = convert_to_price_uom(self.fixed_price)
-        elif self.compute_price == 'percentage':
-            price = (price - (price * (self.percent_price / 100))) or 0.0
-        else:
-            # complete formula
-            price_limit = price
-            price = (price - (price * (self.price_discount / 100))) or 0.0
-            if self.price_round:
-                price = tools.float_round(price, precision_rounding=self.price_round)
-
-            if self.price_surcharge:
-                price_surcharge = convert_to_price_uom(self.price_surcharge)
-                price += price_surcharge
-
-            if self.price_min_margin:
-                price_min_margin = convert_to_price_uom(self.price_min_margin)
-                price = max(price, price_limit + price_min_margin)
-
-            if self.price_max_margin:
-                price_max_margin = convert_to_price_uom(self.price_max_margin)
-                price = min(price, price_limit + price_max_margin)
-
-            valor = ""
-            _logger.info("========= PRICE ======= %r " % price)
-            _logger.info("========= MARCADO PARA WEB ======= %r " % self.web_price_round)
-            if self.web_price_round:
-                _logger.info("========= MARCADO PARA WEB ======= %r " % self.web_price_round)
-                str_price = str(price)
-                decimal = str_price.split(".")
-                _logger.info("========= DECIMAL ======= %r " % decimal)
-                valor = str(decimal[0]) + "."
-                if int(decimal[1]) < 60:
-                    valor += str(49)
-                else:
-                    valor += str(99)
-            price = float(valor)
-            _logger.info("========= FINAL PRICE ======= %r " % price)
-        return price
+    min_price = fields.Float(string='Precio Minimo')
