@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- NUEVAS SECUENCIAS PARA EL NUEVO NUMERO DE TICKET PARA LOS pos.order -->
+        <record id="seq_pos_order_zielo" model="ir.sequence">
+            <field name="name">Nro. Ticket Tienda Zielo</field>
+            <field name="code">pos.order</field>
+            <field name="prefix">TK01/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_pos_order_little" model="ir.sequence">
+            <field name="name">Nro. Ticket Tienda Little</field>
+            <field name="code">pos.order</field>
+            <field name="prefix">TK01/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_pos_order_sexta" model="ir.sequence">
+            <field name="name">Nro. Ticket Tienda Sexta</field>
+            <field name="code">pos.order</field>
+            <field name="prefix">TK02/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_pos_order_castellana" model="ir.sequence">
+            <field name="name">Nro. Ticket Tienda Castellana</field>
+            <field name="code">pos.order</field>
+            <field name="prefix">TK03/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_pos_order_gasca" model="ir.sequence">
+            <field name="name">Nro. Ticket Tienda La Gasca</field>
+            <field name="code">pos.order</field>
+            <field name="prefix">TK04/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

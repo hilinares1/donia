@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_popup_model_view_algoritmo" model="ir.ui.view">
+        <field name="name">wizard_select_popup_model_algoritmo.form</field>
+        <field name="model">wizard.algoritmo</field>
+        <field name="arch" type="xml">
+            <form string="Nombre de Wizard">
+                <group>
+
+                    <field name="date_before"/>
+                    <field name="date_after"/>
+                </group>
+                <footer>
+               <button name="apply_algoritmo" type="object" string="Aplicar"  class="btn-primary" attrs="{'invisible':['|',('date_before','=',False),('date_after','=',False)]}"/>
+                <button string="Cancel" special="cancel" class="btn-secundary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

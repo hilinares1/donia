@@ -1,0 +1,33 @@
+<odoo>
+  <data>
+
+      <record id="action_algoritmo_fiscal" model="ir.actions.act_window">
+        <field name="name">Introduzca un trimestre determinado para aplicar el Algoritmo Fiscal</field>
+        <field name="res_model">wizard.algoritmo</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
+
+      <menuitem
+        name="Algoritmo Fiscal"
+        id="menu_tiquets_automaticos"
+        action="oct_algoritmo_fiscal.action_algoritmo_fiscal"
+        parent="point_of_sale.menu_point_of_sale" sequence="200"/>
+
+      <record id="edit_pos_order_form_view" model="ir.ui.view">
+            <field name="name">edit.pos_view_form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+
+                    <field name="numero_ticket"/>
+                </field>
+            </field>
+      </record>
+
+
+
+  </data>
+</odoo>
