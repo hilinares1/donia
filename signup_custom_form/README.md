@@ -1,0 +1,22 @@
+Open ERP System :- Odoo 10 Community
+
+Installation 
+============
+Install the Application => Apps -> Signup Form(Technical Name:signup_custom_form)
+
+To install this module, you need to have installed.
+
+On Ubuntu::
+
+  sudo pip install phonenumbers
+
+Version
+========
+	Odoo v10
+
+Module Configuration Guideline
+=============================
+
+	1. Sign up/ Registration form :
+	   Settings -> General Settings -> Click on Allow external users to sign up -> Apply
+
